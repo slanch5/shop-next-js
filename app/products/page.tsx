@@ -1,6 +1,6 @@
 import ProductsContainer from "@/components/products/ProductsContainer";
 
-export function ProductsPage({
+export default function ProductsPage({
   searchParams,
 }: {
   searchParams: { layout?: string; search?: string };
@@ -13,5 +13,3 @@ export function ProductsPage({
     </ProductsContainer>
   );
 }
-
-export default ProductsPage;

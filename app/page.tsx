@@ -3,7 +3,7 @@ import FeaturedProducts from "@/components/home/FeaturedProducts";
 import Hero from "@/components/home/Hero";
 import { Suspense } from "react";
 
-const HomePage = () => {
+export default function page() {
   return (
     <>
       <Hero />
@@ -12,5 +12,4 @@ const HomePage = () => {
       </Suspense>
     </>
   );
-};
-export default HomePage;
+}
