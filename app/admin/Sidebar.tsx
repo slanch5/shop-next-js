@@ -15,13 +15,12 @@ export default function Sidebar() {
         const variant = isActivePage ? "default" : "ghost";
         return (
           <Button
+            key={link.href}
             asChild
             className="w-full capitalize font-normal justify-start"
             variant={variant}
           >
-            <Link key={link.href} href={link.href}>
-              {link.label}
-            </Link>
+            <Link href={link.href}>{link.label}</Link>
           </Button>
         );
       })}
