@@ -19,7 +19,7 @@ export default async function SingleProductPage({
   const { name, image, company, description, price } = product;
   const dollarsAmount = formatCurrency(price);
 
-  const { userId } = auth();
+  const { userId } = await auth();
   const reviewDoesNotExist =
     userId && !(await findExistingReview(userId, product.id));
 

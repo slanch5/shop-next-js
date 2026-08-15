@@ -9,7 +9,7 @@ export default async function FavoriteToggleButton({
 }: {
   productId: string;
 }) {
-  const { userId } = auth();
+  const { userId } = await auth();
   if (!userId) return <CardSignInButton />;
 
   const favoriteId = await fetchFavoriteId({ productId });
