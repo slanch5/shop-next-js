@@ -19,6 +19,7 @@ model Product {
   name        String
   company     String
   description String
+  category String @default("whiskey")
   featured   Boolean
   image       String
   price       Int
@@ -78,4 +79,18 @@ model CartItem {
   amount  Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Order {
+  id             String   @id @default(uuid())
+  clerkId        String
+  products       Int
+  orderTotal     Int      @default(0)
+  tax            Int      @default(0)
+  shipping       Int      @default(0)
+  email          String
+  isPaid         Boolean  @default(false)
+  orderReference String   @unique
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 }

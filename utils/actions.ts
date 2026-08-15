@@ -13,6 +13,8 @@ import { deleteImage, uploadImage } from "./supabase";
 import { revalidatePath } from "next/cache";
 import { object } from "zod";
 import { Cart } from "@prisma/client";
+import { createPaymentData } from "./wayforpay";
+import { OrderActionResult } from "./types";
 
 async function getAuthUser() {
   const user = await currentUser();
@@ -42,15 +44,25 @@ export const fetchFeaturedProducts = async () => {
   return products;
 };
 
-export const fetchAllProducts = ({ search = "" }: { search: string }) => {
+export const fetchAllProducts = ({
+  search = "",
+  category = "",
+}: {
+  search: string;
+  category?: string;
+}) => {
   return db.product.findMany({
     where: {
-      OR: [
-        { name: { contains: search, mode: "insensitive" } },
-        { company: { contains: search, mode: "insensitive" } },
+      AND: [
+        {
+          OR: [
+            { name: { contains: search, mode: "insensitive" } },
+            { company: { contains: search, mode: "insensitive" } },
+          ],
+        },
+        category ? { category } : {},
       ],
     },
-
     orderBy: {
       createdAt: "desc",
     },
@@ -546,11 +558,46 @@ export const updateCartItemAction = async ({
     revalidatePath("/cart");
     return { message: "cart update" };
   } catch (error) {
-    renderError(error);
+    return renderError(error);
   }
 };
-export const createOrderAction = async (prevState: any, formData: FormData) => {
-  return {
-    message: "order created",
-  };
+export const createOrderAction = async (
+  prevState: any,
+  formData: FormData,
+): Promise<OrderActionResult> => {
+  const user = await getAuthUser();
+
+  try {
+    const cart = await fetchOrCreateCart({
+      userId: user.id,
+      errorOnFailure: true,
+    });
+
+    const orderReference = `order-${Date.now()}`;
+
+    await db.order.create({
+      data: {
+        clerkId: user.id,
+        products: cart.numItemsInCart,
+        orderTotal: cart.orderTotal,
+        tax: cart.tax,
+        shipping: cart.shipping,
+        email: user.emailAddresses[0].emailAddress,
+        orderReference,
+      },
+    });
+
+    const paymentData = createPaymentData({
+      orderReference,
+      amount: cart.orderTotal,
+      productNames: cart.cartItems.map((item) => item.product.name),
+      productPrices: cart.cartItems.map((item) => item.product.price),
+      productCounts: cart.cartItems.map((item) => item.amount),
+      clientEmail: user.emailAddresses[0].emailAddress,
+    });
+
+    return { message: "order created", paymentData };
+  } catch (error) {
+    return renderError(error);
+  }
 };

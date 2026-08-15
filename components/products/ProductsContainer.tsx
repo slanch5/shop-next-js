@@ -9,13 +9,16 @@ import Link from "next/link";
 export default async function ProductsContainer({
   layout,
   search,
+  category,
 }: {
   layout: string;
   search: string;
+  category?: string;
 }) {
-  const products = await fetchAllProducts({ search });
+  const products = await fetchAllProducts({ search, category });
   const totalProducts = products.length;
   const searchTerm = search ? `&search=${search}` : ``;
+  const categoryTerm = category ? `&category=${category}` : ``;
 
   return (
     <>
@@ -31,7 +34,7 @@ export default async function ProductsContainer({
               size="icon"
               asChild
             >
-              <Link href={`/products?layout=grid${searchTerm}`}>
+              <Link href={`/products?layout=grid${searchTerm}${categoryTerm}`}>
                 <LuLayoutGrid />
               </Link>
             </Button>
@@ -40,7 +43,7 @@ export default async function ProductsContainer({
               size="icon"
               asChild
             >
-              <Link href={`/products?layout=list${searchTerm}`}>
+              <Link href={`/products?layout=list${searchTerm}${categoryTerm}`}>
                 <LuList />
               </Link>
             </Button>

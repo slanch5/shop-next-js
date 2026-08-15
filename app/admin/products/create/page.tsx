@@ -10,6 +10,15 @@ import { Button } from "@/components/ui/button";
 import { createProductAction } from "@/utils/actions";
 import { CheckBoxInput } from "@/components/form/CheckBoxInput";
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+
 export default function CreateProductPage() {
   return (
     <section>
@@ -32,6 +41,19 @@ export default function CreateProductPage() {
 
             <PriceInput />
             <ImageInput />
+
+            <div>
+              <Label htmlFor="category">Category</Label>
+              <Select name="category" defaultValue="whiskey">
+                <SelectTrigger id="category">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="whiskey">Whiskey</SelectItem>
+                  <SelectItem value="vodka">Vodka</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
           <TextAreainput
             name="description"

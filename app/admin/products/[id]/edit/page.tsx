@@ -11,6 +11,15 @@ import {
   updateProductImageAction,
 } from "@/utils/actions";
 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
+
 export default async function EditProductPage({
   params,
 }: {
@@ -60,6 +69,20 @@ export default async function EditProductPage({
               defaultChecked={featured}
             />
           </div>
+
+          <div>
+            <Label htmlFor="category">Category</Label>
+            <Select name="category" defaultValue="whiskey">
+              <SelectTrigger id="category">
+                <SelectValue />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="whiskey">Whiskey</SelectItem>
+                <SelectItem value="vodka">Vodka</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+
           <SubmitButton text="update product" className="mt-8" />
         </FormContainer>
       </div>

@@ -1,4 +1,5 @@
 import { Prisma } from "@prisma/client";
+import { createPaymentData } from "./wayforpay";
 
 export type CartItemWithProduct = Prisma.CartItemGetPayload<{
   include: { product: true };
@@ -24,4 +25,9 @@ export type CartState = {
   shipping: number;
   tax: number;
   orderTotal: number;
+};
+
+export type OrderActionResult = {
+  message: string;
+  paymentData?: ReturnType<typeof createPaymentData>;
 };

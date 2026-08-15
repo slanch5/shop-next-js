@@ -23,6 +23,9 @@ export const productSchema = z.object({
       message: "description must be between 10 and 1000 words.",
     },
   ),
+  category: z.enum(["whiskey", "vodka"], {
+    message: "please select a valid category",
+  }),
 });
 
 export function validatedInputsZodSchema<T>(
