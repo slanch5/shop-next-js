@@ -21,7 +21,7 @@ export default async function SalesPage() {
         <TableHeader>
           <TableRow>
             <TableHead>Email</TableHead>
-            <TableHead>Products</TableHead>
+            <TableHead>Name Products</TableHead>
             <TableHead>Order Total</TableHead>
             <TableHead>Tax</TableHead>
             <TableHead>Shipping</TableHead>
@@ -33,6 +33,7 @@ export default async function SalesPage() {
           {orders.map((order) => {
             const {
               id,
+              productNames,
               products,
               orderTotal,
               tax,
@@ -45,7 +46,7 @@ export default async function SalesPage() {
             return (
               <TableRow key={id}>
                 <TableCell>{email}</TableCell>
-                <TableCell>{products}</TableCell>
+                <TableCell>{productNames}</TableCell>
                 <TableCell>{formatCurrency(orderTotal)}</TableCell>
                 <TableCell>{formatCurrency(tax)}</TableCell>
                 <TableCell>{formatCurrency(shipping)}</TableCell>
