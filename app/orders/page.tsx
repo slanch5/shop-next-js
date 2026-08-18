@@ -25,7 +25,7 @@ export default async function OrdersPage() {
           <TableCaption>Total orders : {orders.length}</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead>Products</TableHead>
+              <TableHead>Name products</TableHead>
               <TableHead>Order Total</TableHead>
               <TableHead>Tax</TableHead>
               <TableHead>Shipping</TableHead>
@@ -39,6 +39,7 @@ export default async function OrdersPage() {
               const {
                 id,
                 products,
+                productNames,
                 orderTotal,
                 tax,
                 shipping,
@@ -48,7 +49,8 @@ export default async function OrdersPage() {
 
               return (
                 <TableRow key={id}>
-                  <TableCell>{products}</TableCell>
+                  <TableCell>{productNames}</TableCell>
+
                   <TableCell>{formatCurrency(orderTotal)}</TableCell>
                   <TableCell>{formatCurrency(tax)}</TableCell>
                   <TableCell>{formatCurrency(shipping)}</TableCell>
