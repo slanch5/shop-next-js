@@ -615,9 +615,6 @@ export const fetchAdminOrders = async () => {
   const user = await getAdmin();
 
   const orders = await db.order.findMany({
-    where: {
-      isPaid: true,
-    },
     orderBy: {
       createdAt: "desc",
     },
@@ -656,6 +653,23 @@ export const payForOrderAction = async (
     });
 
     return { message: "payment data created", paymentData };
+  } catch (error) {
+    return renderError(error);
+  }
+};
+
+export const deleteOrderAction = async (prevState: { orderId: string }) => {
+  const { orderId } = prevState;
+  const user = await getAuthUser();
+  try {
+    await db.order.delete({
+      where: {
+        id: orderId,
+        clerkId: user.id,
+      },
+    });
+    revalidatePath("/orders");
+    return { message: "order deleted successfully" };
   } catch (error) {
     return renderError(error);
   }

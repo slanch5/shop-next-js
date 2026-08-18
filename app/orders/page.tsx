@@ -12,6 +12,7 @@ import SectionTitle from "@/components/global/SectionTitle";
 import { fetchUserOrders } from "@/utils/actions";
 import { formatCurrency, formatDate } from "@/utils/format";
 import PayButton from "@/components/orders/PayButton";
+import DeleteOrderButton from "@/components/orders/DeleteOrderButton";
 
 export default async function OrdersPage() {
   const orders = await fetchUserOrders();
@@ -30,6 +31,7 @@ export default async function OrdersPage() {
               <TableHead>Shipping</TableHead>
               <TableHead>Date</TableHead>
               <TableHead>Status</TableHead>
+              <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -57,6 +59,9 @@ export default async function OrdersPage() {
                     ) : (
                       <PayButton orderId={id} />
                     )}
+                  </TableCell>
+                  <TableCell>
+                    <DeleteOrderButton orderId={id} />
                   </TableCell>
                 </TableRow>
               );

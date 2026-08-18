@@ -10,6 +10,7 @@ import {
 
 import { fetchAdminOrders } from "@/utils/actions";
 import { formatCurrency, formatDate } from "@/utils/format";
+
 export default async function SalesPage() {
   const orders = await fetchAdminOrders();
 
@@ -25,6 +26,7 @@ export default async function SalesPage() {
             <TableHead>Tax</TableHead>
             <TableHead>Shipping</TableHead>
             <TableHead>Date</TableHead>
+            <TableHead>Status</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -37,16 +39,24 @@ export default async function SalesPage() {
               shipping,
               createdAt,
               email,
+              isPaid,
             } = order;
 
             return (
-              <TableRow key={order.id}>
+              <TableRow key={id}>
                 <TableCell>{email}</TableCell>
                 <TableCell>{products}</TableCell>
                 <TableCell>{formatCurrency(orderTotal)}</TableCell>
                 <TableCell>{formatCurrency(tax)}</TableCell>
                 <TableCell>{formatCurrency(shipping)}</TableCell>
                 <TableCell>{formatDate(createdAt)}</TableCell>
+                <TableCell>
+                  {isPaid ? (
+                    <span className="text-green-600">Оплачено</span>
+                  ) : (
+                    <span className="text-orange-500">Очікує оплати</span>
+                  )}
+                </TableCell>
               </TableRow>
             );
           })}
