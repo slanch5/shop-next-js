@@ -561,10 +561,7 @@ export const updateCartItemAction = async ({
     return renderError(error);
   }
 };
-export const createOrderAction = async (
-  prevState: any,
-  formData: FormData,
-): Promise<OrderActionResult> => {
+export const createOrderAction = async (prevState: any, formData: FormData) => {
   const user = await getAuthUser();
 
   try {
@@ -584,19 +581,81 @@ export const createOrderAction = async (
         shipping: cart.shipping,
         email: user.emailAddresses[0].emailAddress,
         orderReference,
+        productNames: cart.cartItems.map((item) => item.product.name),
+        productPrices: cart.cartItems.map((item) => item.product.price),
+        productCounts: cart.cartItems.map((item) => item.amount),
       },
     });
 
-    const paymentData = createPaymentData({
-      orderReference,
-      amount: cart.orderTotal,
-      productNames: cart.cartItems.map((item) => item.product.name),
-      productPrices: cart.cartItems.map((item) => item.product.price),
-      productCounts: cart.cartItems.map((item) => item.amount),
-      clientEmail: user.emailAddresses[0].emailAddress,
+    await db.cart.delete({
+      where: {
+        id: cart.id,
+      },
+    });
+  } catch (error) {
+    return renderError(error);
+  }
+  redirect("/orders");
+};
+
+export const fetchUserOrders = async () => {
+  const user = await getAuthUser();
+  const orders = await db.order.findMany({
+    where: {
+      clerkId: user.id,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  return orders;
+};
+
+export const fetchAdminOrders = async () => {
+  const user = await getAdmin();
+
+  const orders = await db.order.findMany({
+    where: {
+      isPaid: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
+  return orders;
+};
+
+export const payForOrderAction = async (
+  orderId: string,
+): Promise<OrderActionResult> => {
+  const user = await getAuthUser();
+
+  try {
+    const order = await db.order.findUnique({
+      where: {
+        id: orderId,
+        clerkId: user.id,
+      },
     });
 
-    return { message: "order created", paymentData };
+    if (!order) {
+      throw new Error("Order not found");
+    }
+
+    if (order.isPaid) {
+      throw new Error("This order is already paid");
+    }
+
+    const paymentData = createPaymentData({
+      orderReference: order.orderReference,
+      amount: order.orderTotal,
+      productNames: order.productNames,
+      productPrices: order.productPrices,
+      productCounts: order.productCounts,
+      clientEmail: order.email,
+    });
+
+    return { message: "payment data created", paymentData };
   } catch (error) {
     return renderError(error);
   }

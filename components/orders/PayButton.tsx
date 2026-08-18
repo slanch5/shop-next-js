@@ -1,15 +1,15 @@
 "use client";
 
-import { createOrderAction } from "@/utils/actions";
+import { payForOrderAction } from "@/utils/actions";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
-export default function WayForPayButton() {
+export default function PayButton({ orderId }: { orderId: string }) {
   const [loading, setLoading] = useState(false);
 
   async function handlePay() {
     setLoading(true);
-    const result = await createOrderAction(null, new FormData());
+    const result = await payForOrderAction(orderId);
 
     if (!result.paymentData) {
       alert(result.message);
@@ -45,8 +45,8 @@ export default function WayForPayButton() {
   }
 
   return (
-    <Button onClick={handlePay} disabled={loading} className="w-full mt-4">
-      {loading ? "Обробка..." : "Оплатити через WayForPay"}
+    <Button onClick={handlePay} disabled={loading} size="sm">
+      {loading ? "Обробка..." : "Оплатити"}
     </Button>
   );
 }

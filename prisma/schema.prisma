@@ -91,6 +91,9 @@ model Order {
   email          String
   isPaid         Boolean  @default(false)
   orderReference String   @unique
+  productNames   String[]
+  productPrices  Int[]
+  productCounts  Int[]
   createdAt      DateTime @default(now())
   updatedAt      DateTime @updatedAt
 }
