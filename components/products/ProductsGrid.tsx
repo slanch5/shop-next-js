@@ -2,13 +2,15 @@ import { formatCurrency } from "@/utils/format";
 import { Product } from "@prisma/client";
 import Link from "next/link";
 import { Card, CardContent } from "../ui/card";
+import { Badge } from "../ui/badge";
 import Image from "next/image";
 import FavoriteToggleButton from "./FavoriteToggleButton";
+
 export default function ProductsGrid({ products }: { products: Product[] }) {
   return (
     <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {products.map((product) => {
-        const { name, price, image } = product;
+        const { name, price, image, inStock } = product;
         const productId = product.id;
         const dollarAmount = formatCurrency(price);
         return (
@@ -25,6 +27,11 @@ export default function ProductsGrid({ products }: { products: Product[] }) {
                       priority
                       className="rounded w-full object-cover transform group-hover:scale-110 transition-transform duration-500"
                     />
+                    <div className="absolute top-2 left-2">
+                      <Badge variant={inStock ? "default" : "destructive"}>
+                        {inStock ? "В наявності" : "Немає в наявності"}
+                      </Badge>
+                    </div>
                   </div>
                   <div className="mt-4 text-center">
                     <h2 className="text-lg capitalize">{name}</h2>

@@ -21,6 +21,7 @@ model Product {
   description String
   category String @default("whiskey")
   featured   Boolean
+   inStock     Boolean    @default(true)
   image       String
   price       Int
   createdAt    DateTime   @default(now())

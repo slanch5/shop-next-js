@@ -60,8 +60,9 @@ export default function CreateProductPage() {
             labelText="product description "
             defaultValue="drink desc"
           />
-          <div className="mt-6">
+          <div className="mt-6 flex gap-6">
             <CheckBoxInput name="featured" label="featured" />
+            <CheckBoxInput name="inStock" label="in stock" defaultChecked />
           </div>
           <SubmitButton text="create product" className="mt-8" />
         </FormContainer>

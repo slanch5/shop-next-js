@@ -27,7 +27,7 @@ export default async function EditProductPage({
 }) {
   const { id } = params;
   const product = await fetchAminProductDetails(id);
-  const { name, company, price, description, featured } = product;
+  const { name, company, price, description, featured, inStock } = product;
   return (
     <section>
       <h1 className="text-2xl font-semibold mb-8 capitalize">update product</h1>
@@ -62,11 +62,16 @@ export default async function EditProductPage({
             defaultValue={description}
           />
 
-          <div className="mt-6">
+          <div className="mt-6 flex gap-8">
             <CheckBoxInput
               name="featured"
               label="featured"
               defaultChecked={featured}
+            />
+            <CheckBoxInput
+              name="inStock"
+              label="in stock"
+              defaultChecked={inStock}
             />
           </div>
 
