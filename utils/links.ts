@@ -4,18 +4,18 @@ type NavLink = {
 };
 
 export const links: NavLink[] = [
-  { href: "/", label: "home" },
-  { href: "/about", label: "about" },
-  { href: "/products", label: "products" },
-  { href: "/favorites", label: "favorites" },
-  { href: "/reviews", label: "reviews" },
-  { href: "/cart", label: "cart" },
-  { href: "/orders", label: "orders" },
-  { href: "/admin/sales", label: "dashboard" },
+  { href: "/", label: "головна" },
+  { href: "/about", label: "про нас" },
+  { href: "/products", label: "товари" },
+  { href: "/favorites", label: "обране" },
+  { href: "/reviews", label: "відгуки" },
+  { href: "/cart", label: "кошик" },
+  { href: "/orders", label: "замовлення" },
+  { href: "/admin/sales", label: "панель керування" },
 ];
 
 export const adminLinks: NavLink[] = [
-  { href: "/admin/sales", label: "sales" },
-  { href: "/admin/products", label: "my products" },
-  { href: "/admin/products/create", label: "create products" },
+  { href: "/admin/sales", label: "продажі" },
+  { href: "/admin/products", label: "мої товари" },
+  { href: "/admin/products/create", label: "створити товар" },
 ];

@@ -13,13 +13,13 @@ export default function BreadCrumbs({ name }: { name: string }) {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href="/" className="capitalize text-lg">
-            home
+            Головна
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink href="/products" className="capitalize text-lg">
-            products
+            Продукти
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />

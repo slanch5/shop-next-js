@@ -19,19 +19,19 @@ export default async function OrdersPage() {
 
   return (
     <>
-      <SectionTitle title="Your Orders" />
+      <SectionTitle title="Ваші замовлення" />
       <div>
         <Table>
-          <TableCaption>Total orders : {orders.length}</TableCaption>
+          <TableCaption>Усього замовлень: {orders.length}</TableCaption>
           <TableHeader>
             <TableRow>
-              <TableHead>Name products</TableHead>
-              <TableHead>Order Total</TableHead>
-              <TableHead>Tax</TableHead>
-              <TableHead>Shipping</TableHead>
-              <TableHead>Date</TableHead>
-              <TableHead>Status</TableHead>
-              <TableHead>Actions</TableHead>
+              <TableHead>Товари</TableHead>
+              <TableHead>Сума замовлення</TableHead>
+              <TableHead>Податок</TableHead>
+              <TableHead>Доставка</TableHead>
+              <TableHead>Дата</TableHead>
+              <TableHead>Статус</TableHead>
+              <TableHead>Дії</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>

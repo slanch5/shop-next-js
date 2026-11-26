@@ -8,7 +8,7 @@ export default async function ProductRating({
   const { count, rating } = await fetchProductsRating(productId);
 
   const className = `flex gap-1 items-center text-md mt-1 mb-4`;
-  const countValue = `(${count}) reviews`;
+  const countValue = `(${count}) відгуків`;
 
   return (
     <span className={className}>

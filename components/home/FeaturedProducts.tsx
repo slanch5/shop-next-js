@@ -10,7 +10,7 @@ export default async function FeaturedProducts() {
   }
   return (
     <section className="pt-24">
-      <SectionTitle title="featured products" />
+      <SectionTitle title="рекомендовані товари" />
       <ProductsGrid products={products} />
     </section>
   );

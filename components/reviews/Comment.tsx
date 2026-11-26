@@ -22,7 +22,7 @@ export default function Comment({ comment }: { comment: string }) {
           className="pl-0 text-muted-foreground"
           onClick={toggleExpended}
         >
-          {isExpanded ? "Show Less" : "Show More"}
+          {isExpanded ? "Згорнути" : "Показати більше"}
         </Button>
       )}
     </div>

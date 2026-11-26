@@ -4,9 +4,9 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 
 const categories = [
-  { label: "All", value: "" },
-  { label: "Whiskey", value: "whiskey" },
-  { label: "Vodka", value: "vodka" },
+  { label: "Усі", value: "" },
+  { label: "Столи", value: "whiskey" },
+  { label: "Дивани", value: "vodka" },
 ];
 
 export default function CategoryFilter() {

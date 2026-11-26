@@ -30,14 +30,14 @@ export default async function EditProductPage({
   const { name, company, price, description, featured, inStock } = product;
   return (
     <section>
-      <h1 className="text-2xl font-semibold mb-8 capitalize">update product</h1>
+      <h1 className="text-2xl font-semibold mb-8 capitalize">Редагувати товар</h1>
 
       <div className="border p-8 rounded">
         <ImageInputContainer
           action={updateProductImageAction}
           name={name}
           image={product.image}
-          text="update image"
+          text="оновити зображення"
         >
           <input type="hidden" name="id" value={id} />
           <input type="hidden" name="url" value={product.image} />
@@ -49,46 +49,48 @@ export default async function EditProductPage({
             <FormInput
               type="text"
               name="name"
-              label="product name"
+              label="назва товару"
               defaultValue={name}
             />
-            <FormInput type="text" name="company" defaultValue={company} />
+            <FormInput type="text" name="company"
+              label="компанія"
+              defaultValue={company} />
 
             <PriceInput defaultValue={price} />
           </div>
           <TextAreainput
             name="description"
-            labelText="product description"
+            labelText="опис товару"
             defaultValue={description}
           />
 
           <div className="mt-6 flex gap-8">
             <CheckBoxInput
               name="featured"
-              label="featured"
+              label="рекомендований"
               defaultChecked={featured}
             />
             <CheckBoxInput
               name="inStock"
-              label="in stock"
+              label="в наявності"
               defaultChecked={inStock}
             />
           </div>
 
           <div>
-            <Label htmlFor="category">Category</Label>
+            <Label htmlFor="category">Категорія</Label>
             <Select name="category" defaultValue="whiskey">
               <SelectTrigger id="category">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="whiskey">Whiskey</SelectItem>
-                <SelectItem value="vodka">Vodka</SelectItem>
+                <SelectItem value="whiskey">Стіл</SelectItem>
+                <SelectItem value="vodka">Диван</SelectItem>
               </SelectContent>
             </Select>
           </div>
 
-          <SubmitButton text="update product" className="mt-8" />
+          <SubmitButton text="оновити товар" className="mt-8" />
         </FormContainer>
       </div>
     </section>

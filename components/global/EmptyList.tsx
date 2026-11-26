@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 
 export default function EmptyList({
-  heading = "No items found.",
+  heading = "Не знайдено жодних елементів.",
   className,
 }: {
   heading?: string;

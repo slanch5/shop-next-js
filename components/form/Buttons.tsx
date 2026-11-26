@@ -17,7 +17,7 @@ type SubmitButtonProps = {
 
 export function SubmitButton({
   className = "",
-  text = "submit",
+  text = "надіслати",
   size = "lg",
 }: SubmitButtonProps) {
   const { pending } = useFormStatus();
@@ -32,7 +32,7 @@ export function SubmitButton({
       {pending ? (
         <>
           <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-          Please wait...
+          Зачекайте...
         </>
       ) : (
         text
@@ -111,7 +111,7 @@ export const ProductSignInButton = () => {
   return (
     <SignInButton mode="modal">
       <Button type="button" className="mt-8 capitalize">
-        sign in
+        увійти
       </Button>
     </SignInButton>
   );

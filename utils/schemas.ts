@@ -4,16 +4,16 @@ export const productSchema = z.object({
   name: z
     .string()
     .min(2, {
-      message: "name must be at least 2 characters.",
+      message: "Назва має містити щонайменше 2 символи.",
     })
     .max(100, {
-      message: "name must be less than 100 characters.",
+      message: "Назва має містити менше 100 символів.",
     }),
   company: z.string(),
   featured: z.coerce.boolean(),
   inStock: z.coerce.boolean(),
   price: z.coerce.number().int().min(0, {
-    message: "price must be a positive number.",
+    message: "Ціна має бути додатним числом.",
   }),
   description: z.string().refine(
     (description) => {
@@ -21,11 +21,11 @@ export const productSchema = z.object({
       return wordCount >= 10 && wordCount <= 1000;
     },
     {
-      message: "description must be between 10 and 1000 words.",
+      message: "Опис має містити від 10 до 1000 слів.",
     },
   ),
   category: z.enum(["whiskey", "vodka"], {
-    message: "please select a valid category",
+    message: "Будь ласка, оберіть коректну категорію",
   }),
 });
 
@@ -54,31 +54,31 @@ function validateImageFile() {
     .instanceof(File)
     .refine((file) => {
       return !file || file.size <= maxUploadSize;
-    }, "File size must be less than 1MB")
+    }, "Розмір файлу має бути менше 1 МБ")
     .refine((file) => {
       return (
         !file || acceptedFileTypes.some((type) => file.type.startsWith(type))
       );
-    }, "File must be an image");
+    }, "Файл має бути зображенням");
 }
 
 export const reviewSchema = z.object({
   productId: z.string().refine((value) => value !== "", {
-    message: "Product ID cannot be empty",
+    message: "ID товару не може бути порожнім",
   }),
   authorName: z.string().refine((value) => value !== "", {
-    message: "Author name cannot be empty",
+    message: "Ім’я автора не може бути порожнім",
   }),
   authorImageUrl: z.string().refine((value) => value !== "", {
-    message: "Author image URL cannot be empty",
+    message: "URL зображення автора не може бути порожнім",
   }),
   rating: z.coerce
     .number()
     .int()
-    .min(1, { message: "Rating must be at least 1" })
-    .max(5, { message: "Rating must be at most 5" }),
+    .min(1, { message: "Оцінка має бути не менше 1" })
+    .max(5, { message: "Оцінка має бути не більше 5" }),
   comment: z
     .string()
-    .min(10, { message: "Comment must be at least 10 characters long" })
-    .max(1000, { message: "Comment must be at most 1000 characters long" }),
+    .min(10, { message: "Коментар має містити щонайменше 10 символів" })
+    .max(1000, { message: "Коментар має містити не більше 1000 символів" }),
 });

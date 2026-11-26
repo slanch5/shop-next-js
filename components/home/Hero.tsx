@@ -7,15 +7,15 @@ export default function Hero() {
     <section className="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
       <div className="">
         <h1 className="max-w-2xl font-bold text-4xl tracking-tight sm:text-6xl">
-          We are changing the way people shop
+          Меблі, з якими дім стає вашим
         </h1>
         <p className="mt-8 max-w-xl text-lg leading-8 text-muted-foreground">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-          perferendis voluptas assumenda quaerat illo molestias eos a soluta
-          cupiditate sunt.
+          Створюємо меблі, які поєднують сучасний дизайн, надійні матеріали та
+          щоденний комфорт. Оберіть те, що пасує саме вашому простору, а ми
+          доставимо й зберемо все самі.
         </p>
         <Button asChild size="lg" className="mt-10">
-          <Link href="/products">Our Products</Link>
+          <Link href="/products">Наші товари</Link>
         </Button>
       </div>
       <HeroCarousel />

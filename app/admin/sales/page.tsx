@@ -17,16 +17,16 @@ export default async function SalesPage() {
   return (
     <div>
       <Table>
-        <TableCaption>Total orders : {orders.length}</TableCaption>
+        <TableCaption>Усього замовлень: {orders.length}</TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>Email</TableHead>
-            <TableHead>Name Products</TableHead>
-            <TableHead>Order Total</TableHead>
-            <TableHead>Tax</TableHead>
-            <TableHead>Shipping</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead>Status</TableHead>
+            <TableHead>Ел. пошта</TableHead>
+            <TableHead>Товари</TableHead>
+            <TableHead>Сума замовлення</TableHead>
+            <TableHead>Податок</TableHead>
+            <TableHead>Доставка</TableHead>
+            <TableHead>Дата</TableHead>
+            <TableHead>Статус</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

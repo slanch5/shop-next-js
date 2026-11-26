@@ -10,12 +10,12 @@ import {
 export default async function ReviewsPage() {
   const reviews = await fetchProductsReviewsByUser();
   if (reviews.length === 0) {
-    return <SectionTitle title="you have no reviews yet" />;
+    return <SectionTitle title="У вас ще немає відгуків" />;
   }
 
   return (
     <>
-      <SectionTitle title="Your Reviews" />
+      <SectionTitle title="Ваші відгуки" />
       <section className="grid md:grid-cols-2 gap-8 mt-4">
         {reviews.map((review) => {
           const { comment, rating } = review;

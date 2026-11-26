@@ -22,14 +22,14 @@ export default async function ProductsPage() {
     <section>
       <Table>
         <TableCaption className="capitalize">
-          total products : {items.length}
+          усього товарів: {items.length}
         </TableCaption>
         <TableHeader>
           <TableRow>
-            <TableHead>Products Name</TableHead>
-            <TableHead>Company</TableHead>
-            <TableHead>Price</TableHead>
-            <TableHead>Actions</TableHead>
+            <TableHead>Назва товару</TableHead>
+            <TableHead>Компанія</TableHead>
+            <TableHead>Ціна</TableHead>
+            <TableHead>Дії</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>

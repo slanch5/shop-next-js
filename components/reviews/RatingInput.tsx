@@ -22,7 +22,7 @@ export default function RatingInput({
   return (
     <div className="mb-2 max-w-xs">
       <Label htmlFor={name} className="capitalize">
-        {labelText || name}
+        {labelText || "оцінка"}
       </Label>
       <Select defaultValue={numbers[0]} name={name} required>
         <SelectTrigger id={name}>

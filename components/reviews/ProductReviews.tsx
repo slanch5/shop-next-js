@@ -11,7 +11,7 @@ export default async function ProductReviews({
 
   return (
     <div className="mt-16">
-      <SectionTitle title="product reviews" />
+      <SectionTitle title="відгуки про товар" />
 
       <div className="grid md:grid-cols-2 gap-8 my-8">
         {reviews.map((review) => {
@@ -20,7 +20,7 @@ export default async function ProductReviews({
             comment,
             rating,
             image: authorImageUrl,
-            name: authorName ?? "anonymos",
+            name: authorName ?? "анонім",
           };
           return <ReviewCard key={review.id} reviewInfo={reviewInfo} />;
         })}

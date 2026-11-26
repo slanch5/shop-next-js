@@ -14,12 +14,12 @@ export default async function CartPage() {
   const previousCart = await fetchOrCreateCart({ userId });
   const { cartItems, currentCart } = await updateCart(previousCart);
   if (cartItems.length === 0) {
-    return <SectionTitle title="your cart is empty" />;
+    return <SectionTitle title="Ваш кошик порожній" />;
   }
 
   return (
     <>
-      <SectionTitle title="Shopping Cart" />
+      <SectionTitle title="Кошик" />
       <div className="mt-8 grid gap-4 lg:grid-cols-12">
         <div className="lg:col-span-8">
           <CartItemsList cartItems={cartItems} />

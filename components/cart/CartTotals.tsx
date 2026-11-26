@@ -11,15 +11,15 @@ export default function CartTotals({ cart }: { cart: Cart }) {
   return (
     <div>
       <Card className="p-8">
-        <CartTotalRow label="Subtotal" amount={cartTotal} />
-        <CartTotalRow label="Shipping" amount={shipping} />
-        <CartTotalRow label="Tax" amount={tax} />
+        <CartTotalRow label="Проміжний підсумок" amount={cartTotal} />
+        <CartTotalRow label="Доставка" amount={shipping} />
+        <CartTotalRow label="Податок" amount={tax} />
         <CardTitle className="mt-8">
-          <CartTotalRow label="Order Total" amount={orderTotal} lastRow />
+          <CartTotalRow label="Сума замовлення" amount={orderTotal} lastRow />
         </CardTitle>
       </Card>
       <FormContainer action={createOrderAction}>
-        <SubmitButton text="Place Order" className="w-full mt-8" />
+        <SubmitButton text="Оформити замовлення" className="w-full mt-8" />
       </FormContainer>
     </div>
   );

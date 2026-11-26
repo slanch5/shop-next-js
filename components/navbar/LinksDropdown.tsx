@@ -32,20 +32,20 @@ export default async function LinksDropdown() {
         <SignedOut>
           <DropdownMenuItem>
             <SignInButton mode="modal">
-              <button className="w-full text-left">Login</button>
+              <button className="w-full text-left">Увійти</button>
             </SignInButton>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <SignUpButton mode="modal">
-              <button className="w-full text-left">Register</button>
+              <button className="w-full text-left">Зареєструватися</button>
             </SignUpButton>
           </DropdownMenuItem>
         </SignedOut>
 
         <SignedIn>
           {links.map((link) => {
-            if (link.label === "dashboard" && !isAdmin) {
+            if (link.href.startsWith("/admin") && !isAdmin) {
               return null;
             }
 

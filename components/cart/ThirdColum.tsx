@@ -20,7 +20,7 @@ export default function ThirdColum({
   const { toast } = useToast();
   const handleAmountChange = async (value: number) => {
     setIsLoading(true);
-    toast({ description: "Calculating..." });
+    toast({ description: "Перерахунок..." });
     const result = await updateCartItemAction({
       amount: value,
       cartItemId: id,
@@ -39,7 +39,7 @@ export default function ThirdColum({
       />
       <FormContainer action={removeCartItemAction}>
         <input type="hidden" name="id" value={id} />
-        <SubmitButton size="sm" className="mt-4" text="remove" />
+        <SubmitButton size="sm" className="mt-4" text="видалити" />
       </FormContainer>
     </div>
   );

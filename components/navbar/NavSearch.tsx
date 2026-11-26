@@ -31,7 +31,7 @@ export default function NavSearch() {
   return (
     <Input
       type="search"
-      placeholder="search products"
+      placeholder="пошук товарів"
       className="max-w-xs dark:bg-muted pr-1"
       onChange={(e) => {
         setSearch(e.target.value);

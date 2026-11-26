@@ -31,7 +31,7 @@ const getAdmin = async () => {
 const renderError = (error: unknown): { message: string } => {
   console.log(error);
   return {
-    message: error instanceof Error ? error.message : "an error occurred",
+    message: error instanceof Error ? error.message : "Сталася помилка",
   };
 };
 
@@ -133,7 +133,7 @@ export const deleteProductsAction = async (prevState: {
     });
     await deleteImage(product.image);
     revalidatePath("/admin/products");
-    return { message: "product removed" };
+    return { message: "Товар видалено" };
   } catch (error) {
     return renderError(error);
   }
@@ -172,7 +172,7 @@ export const updateProductAction = async (
 
     revalidatePath(`/admin/products/${productId}/edit`);
 
-    return { message: "Product update successfully" };
+    return { message: "Товар успішно оновлено" };
   } catch (error) {
     return renderError(error);
   }
@@ -200,7 +200,7 @@ export const updateProductImageAction = async (
     });
 
     revalidatePath(`/admin/products/${productId}/edit`);
-    return { message: "Product update image successfully" };
+    return { message: "Зображення товару успішно оновлено" };
   } catch (error) {
     return renderError(error);
   }
@@ -243,7 +243,7 @@ export const toggleFavoriteAction = async (prevState: {
       });
     }
     revalidatePath(pathname);
-    return { message: favoriteId ? "Removed from Faves" : "Added to Faves" };
+    return { message: favoriteId ? "Видалено з обраного" : "Додано в обране" };
   } catch (error) {
     return renderError(error);
   }
@@ -279,7 +279,7 @@ export const createReviewAction = async (
     });
 
     revalidatePath(`/products/${validatedFields.productId}`);
-    return { message: "review submitted successfully" };
+    return { message: "Відгук успішно надіслано" };
   } catch (error) {
     return renderError(error);
   }
@@ -329,7 +329,7 @@ export const deleteReviewAction = async (prevState: { reviewId: string }) => {
       },
     });
     revalidatePath("/reviews");
-    return { message: "review delete successfully" };
+    return { message: "Відгук успішно видалено" };
   } catch (error) {
     return renderError(error);
   }
@@ -380,7 +380,7 @@ const fetchProduct = async (productId: string) => {
     },
   });
   if (!product) {
-    throw new Error("Product not found");
+    throw new Error("Товар не знайдено");
   }
   return product;
 };
@@ -408,7 +408,7 @@ export const fetchOrCreateCart = async ({
   });
 
   if (!cart && errorOnFailure) {
-    throw new Error("Cart not found");
+    throw new Error("Кошик не знайдено");
   }
 
   if (!cart) {
@@ -525,7 +525,7 @@ export const removeCartItemAction = async (
     });
     await updateCart(cart);
     revalidatePath("/cart");
-    return { message: "removed item from the cart" };
+    return { message: "Товар видалено з кошика" };
   } catch (error) {
     return renderError(error);
   }
@@ -556,7 +556,7 @@ export const updateCartItemAction = async ({
     });
     await updateCart(cart);
     revalidatePath("/cart");
-    return { message: "cart update" };
+    return { message: "Кошик оновлено" };
   } catch (error) {
     return renderError(error);
   }
@@ -636,11 +636,11 @@ export const payForOrderAction = async (
     });
 
     if (!order) {
-      throw new Error("Order not found");
+      throw new Error("Замовлення не знайдено");
     }
 
     if (order.isPaid) {
-      throw new Error("This order is already paid");
+      throw new Error("Це замовлення вже оплачено");
     }
 
     const paymentData = createPaymentData({
@@ -652,7 +652,7 @@ export const payForOrderAction = async (
       clientEmail: order.email,
     });
 
-    return { message: "payment data created", paymentData };
+    return { message: "Платіжні дані створено", paymentData };
   } catch (error) {
     return renderError(error);
   }
@@ -669,7 +669,7 @@ export const deleteOrderAction = async (prevState: { orderId: string }) => {
       },
     });
     revalidatePath("/orders");
-    return { message: "order deleted successfully" };
+    return { message: "Замовлення успішно видалено" };
   } catch (error) {
     return renderError(error);
   }

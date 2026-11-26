@@ -10,8 +10,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Next Storefront",
-  description: "A nifty store built with Next.js",
+  title: "Меблевий магазин",
+  description: "Сучасні меблі для вашого дому",
 };
 
 export default function RootLayout({
@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en" suppressHydrationWarning>
+      <html lang="uk" suppressHydrationWarning>
         <body className={inter.className}>
           <Providers>
             <Navbar />

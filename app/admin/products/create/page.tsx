@@ -22,20 +22,20 @@ import { Label } from "@/components/ui/label";
 export default function CreateProductPage() {
   return (
     <section>
-      <h1 className="text-2xl font-semibold mb-8 capitalize">create Product</h1>
+      <h1 className="text-2xl font-semibold mb-8 capitalize">Створити товар</h1>
       <div className="border p-8 rounded-md">
         <FormContainer action={createProductAction}>
           <div className="grid gap-4 md:grid-cols-2 my-4">
             <FormInput
               type="text"
               name="name"
-              label="product name"
+              label="назва товару"
               defaultValue="slavik"
             />
             <FormInput
               type="text"
               name="company"
-              label="company"
+              label="компанія"
               defaultValue="slavik org"
             />
 
@@ -43,28 +43,28 @@ export default function CreateProductPage() {
             <ImageInput />
 
             <div>
-              <Label htmlFor="category">Category</Label>
+              <Label htmlFor="category">Категорія</Label>
               <Select name="category" defaultValue="whiskey">
                 <SelectTrigger id="category">
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="whiskey">Whiskey</SelectItem>
-                  <SelectItem value="vodka">Vodka</SelectItem>
+                  <SelectItem value="whiskey">Стіл</SelectItem>
+                  <SelectItem value="vodka">Диван</SelectItem>
                 </SelectContent>
               </Select>
             </div>
           </div>
           <TextAreainput
             name="description"
-            labelText="product description "
+            labelText="опис товару"
             defaultValue="drink desc"
           />
           <div className="mt-6 flex gap-6">
-            <CheckBoxInput name="featured" label="featured" />
-            <CheckBoxInput name="inStock" label="in stock" defaultChecked />
+            <CheckBoxInput name="featured" label="рекомендований" />
+            <CheckBoxInput name="inStock" label="в наявності" defaultChecked />
           </div>
-          <SubmitButton text="create product" className="mt-8" />
+          <SubmitButton text="створити товар" className="mt-8" />
         </FormContainer>
       </div>
     </section>

@@ -19,7 +19,7 @@ export default function SubmitReview({ productId }: { productId: string }) {
         className="capitalize"
         onClick={() => setIsReviewFormVisible((prev) => !prev)}
       >
-        leave review
+        залишити відгук
       </Button>
       {isReviewFormVisible && (
         <Card className="p-8 mt-8">
@@ -28,15 +28,15 @@ export default function SubmitReview({ productId }: { productId: string }) {
             <input
               type="hidden"
               name="authorName"
-              value={user?.firstName || "user"}
+              value={user?.firstName || "користувач"}
             />
 
             <input type="hidden" name="authorImageUrl" value={user?.imageUrl} />
             <RatingInput name="rating" />
             <TextAreainput
               name="comment"
-              labelText="feedback"
-              defaultValue="Outstanding products"
+              labelText="відгук"
+              defaultValue="Чудовий товар"
             ></TextAreainput>
             <SubmitButton className="mt-4" />
           </FormContainer>

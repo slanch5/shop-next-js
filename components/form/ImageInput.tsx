@@ -7,7 +7,7 @@ export default function ImageInput() {
   return (
     <div className="mb-2">
       <Label htmlFor={name} className="capitalize">
-        Image
+        Зображення
       </Label>
       <Input id={name} type="file" name={name} required accept="image/*" />
     </div>
